@@ -106,7 +106,12 @@ Change the directory to the wyoming satellite directory
 cd wyoming-satellite/
 ```
 
-Create a new file to add the configuration and change "Pi" in the ExecStart line and the WorkingDirectory line to your rasberry pi username.
+Create a new file for the service
+```sh
+sudo systemctl edit --force --full wyoming-satellite.service
+```
+
+Add the configuration and change "Pi" in the ExecStart line and the WorkingDirectory line to your rasberry pi username.
 ```sh
 [Unit]
 Description=Wyoming Satellite
@@ -140,3 +145,188 @@ If there were errors and you fixed them, restart the wyoming satellite service
 sudo systemctl restart wyoming-satellite.service
 ```
 
+## Install local wake word and its dependencies
+
+Change the directory to the wyoming satellite directory
+```sh
+cd wyoming-satellite/
+```
+
+Update the rasberry pi 
+```sh
+sudo apt-get update
+```
+
+Install the local wake word dependencies
+```sh
+sudo apt-get install --no-install-recommends  \
+  libopenblas-dev
+```
+
+Change to your home directory
+```sh
+cd ../
+```
+
+Clone the open wake word for Git
+```sh
+git clone https://github.com/rhasspy/wyoming-openwakeword.git
+```
+
+Change the directory to the wyoming open wake word directory
+```sh
+cd wyoming-openwakeword
+```
+
+Install the open wake word using the script file
+```sh
+script/setup
+```
+
+## Create the wyoming local wake word service
+
+Create a new file for the service
+```sh
+sudo systemctl edit --force --full wyoming-openwakeword.service
+```
+
+Add the configuration and change "Pi" in the ExecStart line and the WorkingDirectory line to your rasberry pi username.
+```sh
+[Unit]
+Description=Wyoming openWakeWord
+
+[Service]
+Type=simple
+ExecStart=/home/pi/wyoming-openwakeword/script/run --uri 'tcp://127.0.0.1:10400'
+WorkingDirectory=/home/pi/wyoming-openwakeword
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=default.target
+```
+
+Update the wyoming satellite configuration file to to require the wyoming-openwakeword.serivce and also adding the wake word that will be used to activate the device when you want to say something.  Add the openwake word configuration within the "Unit" section. Add the wake-word-name configuration witin the "Service" section.  You can use "ok_nabu" or "hey_jarvis".
+```sh
+[Unit]
+Description=Wyoming Satellite
+Wants=network-online.target
+After=network-online.target
+Requires=wyoming-openwakeword.service
+
+[Service]
+Type=simple
+ExecStart=/home/pi/wyoming-satellite/script/run --name 'my satellite' --uri 'tcp://0.0.0.0:10700' --mic-command 'arecord -D plughw:CARD=seeed2micvoicec,DEV=0 -r 16000 -c 1 -f S16_LE -t raw' --snd-command 'aplay -D plughw:CARD=seeed2micvoicec,DEV=0 -r 22050 -c 1 -f S16_LE -t raw' --mic-auto-gain 5 --mic-noise-suppression 2 --wake-uri 'tcp://127.0.0.1:10400' --wake-word-name 'ok_nabu'
+
+WorkingDirectory=/home/pi/wyoming-satellite
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=default.target
+```
+
+Reload the services
+```sh
+sudo systemctl daemon-reload
+```
+
+Restart the wyoming satellite service
+```sh
+sudo systemctl restart wyoming-satellite.service
+```
+
+Verify the wyoming satellite and openwake word services are running within the "Active" line for each services.
+```sh
+sudo systemctl restart wyoming-satellite.service
+```
+
+## Enable the LED lights when you want to say something
+
+Change to your home directory
+```sh
+cd ../
+```
+
+Change the directory to the wyoming satellite examples directory
+```sh
+cd wyoming-satellite/examples
+```
+
+Install the packages for the LEDs
+```sh
+python3 -m venv --system-site-packages .venv
+.venv/bin/pip3 install --upgrade pip
+.venv/bin/pip3 install --upgrade wheel setuptools
+.venv/bin/pip3 install 'wyoming==1.5.2'
+```
+
+Install the necessary libraries
+```sh
+sudo apt-get install python3-spidev python3-gpiozero
+```
+
+Test to make sure the LED dependencies are installed
+```sh
+.venv/bin/python3 2mic_service.py --help
+```
+An output of different help commands should be displayed. A failure would result in no help commands found.
+
+Create a new file for the service
+```sh
+sudo systemctl edit --force --full 2mic_leds.service
+```
+
+Add the configuration and change "Pi" in the ExecStart line and the WorkingDirectory line to your rasberry pi username.
+```sh
+[Unit]
+Description=2Mic LEDs
+
+[Service]
+Type=simple
+ExecStart=/home/pi/wyoming-satellite/examples/.venv/bin/python3 2mic_service.py --uri 'tcp://127.0.0.1:10500'
+WorkingDirectory=/home/pi/wyoming-satellite/examples
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=default.target
+```
+
+Update the wyoming satellite configuration file to to require the 2mic_LEDs.serivce and also adding the port to ensure the LEDs function.  Add the 2mic_LEDs configuration within the "Unit" section. Add the wake-word-name configuration witin the "Service" section.  You can use "ok_nabu" or "hey_jarvis".
+```sh
+[Unit]
+Description=Wyoming Satellite
+Wants=network-online.target
+After=network-online.target
+Requires=wyoming-openwakeword.service
+Requires=2mic_leds.service
+
+[Service]
+Type=simple
+ExecStart=/home/pi/wyoming-satellite/script/run --name 'my satellite' --uri 'tcp://0.0.0.0:10700' --mic-command 'arecord -D plughw:CARD=seeed2micvoicec,DEV=0 -r 16000 -c 1 -f S16_LE -t raw' --snd-command 'aplay -D plughw:CARD=seeed2micvoicec,DEV=0 -r 22050 -c 1 -f S16_LE -t raw' --mic-auto-gain 5 --mic-noise-suppression 2 --wake-uri 'tcp://127.0.0.1:10400' --wake-word-name 'ok_nabu' --event-uri 'tcp://127.0.0.1:10500'
+
+WorkingDirectory=/home/pi/wyoming-satellite
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=default.target
+```
+
+Reload the services
+```sh
+sudo systemctl daemon-reload
+```
+
+Restart the wyoming satellite service
+```sh
+sudo systemctl restart wyoming-satellite.service
+```
+
+Verify the 2mic_LEDs service is running within the "Active" line.
+```sh
+sudo systemctl status wyoming-satellite.service 2mic_leds.service
+```
+
+## Done
