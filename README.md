@@ -329,4 +329,51 @@ Verify the 2mic_LEDs service is running within the "Active" line.
 sudo systemctl status wyoming-satellite.service 2mic_leds.service
 ```
 
-## Done
+Do a reboot of the rasberry pi as the LED lights may not work until this is done
+```sh
+sudo reboot
+```
+
+## !!!Done!!!
+
+## Commands to reference
+
+Check the status of the Wyoming Satellite, Openwake Word, and 2mic LED services
+```sh
+sudo systemctl status wyoming-satellite.service wyoming-openwakeword.service 2mic_leds.service
+```
+
+Check the active logs for the Wyoming Satellite, Openwake Word, and 2mic LED services
+```sh
+journalctl -u wyoming-satellite.service -f
+```
+```sh
+journalctl -u wyoming-openwakeword.service -f
+```
+```sh
+journalctl -u 2mic_leds.service -f
+```
+
+Review/Modify the configuration files for the Wyoming Satellite, Openwake Word, and 2mic LED
+```sh
+sudo systemctl edit --force --full wyoming-satellite.service
+```
+```sh
+sudo systemctl edit --force --full wyoming-openwakeword.service
+```
+```sh
+sudo systemctl edit --force --full 2mic_leds.service
+```
+
+Reboot the services after changes are made to any configuration file
+```sh
+sudo systemctl daemon-reload
+sudo systemctl restart wyoming-satellite.service
+```
+
+Force start the Wyoming Satellite, Openwake Word, and 2mic LED services
+```sh
+sudo systemctl enable --now wyoming-satellite.service
+sudo systemctl enable --now wyoming-openwakeword.service
+sudo systemctl enable --now 2mic_leds.service
+```
