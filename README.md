@@ -349,7 +349,7 @@ Do a reboot of the rasberry pi as the LED lights may not work until this is done
 sudo reboot
 ```
 
-##Done
+## Done
 You can confirm that the wyoming satellite is installed and configured correct if you review the device in Home Assistant and say your wake word.  The voice assistant status should change from idle to active.
 
 ## Commands to reference
