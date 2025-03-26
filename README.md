@@ -1,5 +1,5 @@
-# Wyoming-Satellite
-Wyoming Satellite Installation
+# Wyoming Satellite Installation with Home Assistant
+This guide was created and verified on 03/26/2025 using a rasberry pi zero 2W, respeak 2mic board, and Home Assistant HASS io edition.
 
 ## Table of Contents
 - [Update the Raspberry Pi](#update-the-raspberry-pi)
