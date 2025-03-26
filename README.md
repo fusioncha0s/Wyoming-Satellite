@@ -1,17 +1,20 @@
-## Table of Contents
-- [Introduction](#introduction)
-- [Update the rasberry pi](##Updatetherasberrypi)
-- [Install Gite](##InstallGit)
-- [Clone the Wyoming Satellite repository](##ClonetheWyomingSatelliterepository)
-- [Install the drivers for the Respeaker 2 Mic board](##InstallthedriversfortheRespeaker2Micboard)
-- [Install the Wyoming Satellite dependencies](##InstalltheWyomingSatellitedependencies)
-
-
-
-
-
 # Wyoming-Satellite
 Wyoming Satellite Installation
+
+## Table of Contents
+- [Update the Raspberry Pi](#update-the-raspberry-pi)
+- [Install Git](#install-git)
+- [Clone the Wyoming Satellite repository](#Clone-the-Wyoming-Satellite-repository)
+- [Install the drivers for the Respeaker 2 Mic board](#Install-the-drivers-for-the-Respeaker-2-Mic-board)
+- [Install the Wyoming Satellite dependencies](#Install-the-Wyoming-Satellite-dependencies)
+- [Obtain your audio devices](#Obtain-your-audio-devices)
+- [Add the Wyoming Satellite to Home Assistant](#Add-the-Wyoming-Satellite-to-Home-Assistant)
+- [Create the wyoming satellite service](#Create-the-wyoming-satellite-service)
+- [Install local wake word and its dependencies](#Install-local-wake-word-and-its-dependencies)
+- [Create the wyoming local wake word service](#Create-the-wyoming-local-wake-word-service)
+- [Enable the LED lights when you want to say something](#Enable-the-LED-lights-when-you-want-to-say-something)
+- [!!!Done!!!](#!!!Done!!!)
+- [Commands to reference](#Commands-to-reference)
 
 ## Update the rasberry pi
 ```sh
