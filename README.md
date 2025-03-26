@@ -13,6 +13,7 @@ Wyoming Satellite Installation
 - [Install local wake word and its dependencies](#Install-local-wake-word-and-its-dependencies)
 - [Create the wyoming local wake word service](#Create-the-wyoming-local-wake-word-service)
 - [Enable the LED lights when you want to say something](#Enable-the-LED-lights-when-you-want-to-say-something)
+- [Done](#Done)
 - [Commands to reference](#Commands-to-reference)
 
 ## Update the rasberry pi
@@ -348,7 +349,8 @@ Do a reboot of the rasberry pi as the LED lights may not work until this is done
 sudo reboot
 ```
 
-##----------------------------------Done----------------------------------
+##Done
+You can confirm that the wyoming satellite is installed and configured correct if you review the device in Home Assistant and say your wake word.  The voice assistant status should change from idle to active.
 
 ## Commands to reference
 
