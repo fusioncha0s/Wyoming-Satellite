@@ -1,10 +1,10 @@
 ## Table of Contents
 - [Introduction](#introduction)
-- [## Update the rasberry pi](#update_the_pi)
-- [## Install Gite](#install_git)
-- [## Clone the Wyoming Satellite repository](#clone_wyoming_satellite_rep)
-- [## Install the drivers for the Respeaker 2 Mic board](#install_respeak_drivers)
-- [## Install the Wyoming Satellite dependencies](#install_wyoming_satellite_dependencies)
+- [Update the rasberry pi](##Updatetherasberrypi)
+- [Install Gite](##InstallGit)
+- [Clone the Wyoming Satellite repository](##ClonetheWyomingSatelliterepository)
+- [Install the drivers for the Respeaker 2 Mic board](##InstallthedriversfortheRespeaker2Micboard)
+- [Install the Wyoming Satellite dependencies](##InstalltheWyomingSatellitedependencies)
 
 
 
