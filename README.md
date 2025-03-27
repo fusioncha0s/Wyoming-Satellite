@@ -196,7 +196,7 @@ Change the directory to the wyoming open wake word directory
 cd wyoming-openwakeword
 ```
 
-Install the open wake word using the script file
+Install the open wake word using the script file.  It does take a few seconds before the code actually executes, so don't be alarmed and try to enter the code again.
 ```sh
 script/setup
 ```
