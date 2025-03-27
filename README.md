@@ -75,6 +75,8 @@ An output of different help commands should be displayed. A failure would result
 
 ## Obtain your audio devices
 
+You can skip over obtaining your audio devices if you are using the respeak device with your pi.  My commands include the plughw device for the configuration files later on.  If you do not get audio when finished with the entire setup, i would recommend coming back to this step and determining your audio devices.
+
 Find what your microphone device will be.  For Respeaker Mic 2 HAT, it will be the plughw:CARD=seeed2micvoicec,DEV=0
 ```sh
 arecord -L
