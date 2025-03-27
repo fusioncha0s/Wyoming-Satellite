@@ -105,7 +105,7 @@ Change the directory to the wyoming satellite directory
 cd wyoming-satellite/
 ```
 
-Add the wyoming satellite to home assistant
+Add the wyoming satellite to home assistant.  Make sure to change the --name value to what want the wyoming satellite to be called in Home Assistant.  You can always change this later too.
 ```sh
 script/run \
   --debug \
