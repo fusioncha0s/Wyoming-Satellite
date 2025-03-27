@@ -240,7 +240,6 @@ Requires=wyoming-openwakeword.service
 [Service]
 Type=simple
 ExecStart=/home/pi/wyoming-satellite/script/run --name 'my satellite' --uri 'tcp://0.0.0.0:10700' --mic-command 'arecord -D plughw:CARD=seeed2micvoicec,DEV=0 -r 16000 -c 1 -f S16_LE -t raw' --snd-command 'aplay -D plughw:CARD=seeed2micvoicec,DEV=0 -r 22050 -c 1 -f S16_LE -t raw' --mic-auto-gain 5 --mic-noise-suppression 2 --wake-uri 'tcp://127.0.0.1:10400' --wake-word-name 'ok_nabu'
-
 WorkingDirectory=/home/pi/wyoming-satellite
 Restart=always
 RestartSec=1
