@@ -315,6 +315,11 @@ RestartSec=1
 WantedBy=default.target
 ```
 
+Reopen the wyoming sattelite confiruation file to make updates
+```sh
+sudo systemctl edit --force --full wyoming-satellite.service
+```
+
 Update the wyoming satellite configuration file to to require the 2mic_LEDs.serivce and also adding the port to ensure the LEDs function.  Add the 2mic_LEDs configuration within the "Unit" section. Add the wake-word-name configuration witin the "Service" section.  You can use "ok_nabu" or "hey_jarvis".
 ```sh
 [Unit]
