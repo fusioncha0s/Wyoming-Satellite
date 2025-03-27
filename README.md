@@ -26,6 +26,7 @@ sudo apt-get install --no-install-recommends  \
   git \
   python3-venv
 ```
+I did get an error where it failed to fetch due to incorrect IP for some reason.  I rebooted the pi and ran the sudo-apt-get update again and it seems it was not pulling the latest version.  After running the apt-get update, i proceeded with the install git again and it pulled correctly.
 
 ## Clone the Wyoming Satellite repository
 ```sh
