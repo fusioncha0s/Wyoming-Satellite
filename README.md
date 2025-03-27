@@ -14,6 +14,7 @@ This guide was created and verified on 03/26/2025 using a rasberry pi zero 2W, r
 - [Create the wyoming local wake word service](#Create-the-wyoming-local-wake-word-service)
 - [Enable the LED lights when you want to say something](#Enable-the-LED-lights-when-you-want-to-say-something)
 - [Commands to reference](#Commands-to-reference)
+- [Additional Wyoming Satellite commands to use within your configuration file](#Additional-Wyoming-Satellite-commands-to-use-within-your-configuration-file)
 
 ## Update the rasberry pi
 ```sh
@@ -395,116 +396,328 @@ sudo systemctl enable --now wyoming-satellite.service
 sudo systemctl enable --now wyoming-openwakeword.service
 sudo systemctl enable --now 2mic_leds.service
 ```
-## Additional Wyoming Satellite commands to use within your configuration file.
-options:
-  -h, --help            show this help message and exit
-  --mic-uri MIC_URI     URI of Wyoming microphone service
-  --mic-command MIC_COMMAND
-                        Program to run for microphone input
-  --mic-command-rate MIC_COMMAND_RATE
-                        Sample rate of mic-command (hertz, default: 16000)
-  --mic-command-width MIC_COMMAND_WIDTH
-                        Sample width of mic-command (bytes, default: 2)
-  --mic-command-channels MIC_COMMAND_CHANNELS
-                        Sample channels of mic-command (default: 1)
+## Additional Wyoming Satellite commands to use within your configuration file
+
+show this help message and exit
+```sh
+  -h, --help
+```
+
+URI of Wyoming microphone service
+```sh
+--mic-uri MIC_UR
+```
+
+Program to run for microphone input
+```sh
+--mic-command MIC_COMMAND
+```
+
+Sample rate of mic-command (hertz, default: 16000)
+```sh
+--mic-command-rate MIC_COMMAND_RATE
+```
+
+Sample width of mic-command (bytes, default: 2)
+```sh
+--mic-command-width MIC_COMMAND_WIDTH
+```
+
+Sample channels of mic-command (default: 1)
+```sh
+ --mic-command-channels MIC_COMMAND_CHANNELS
+```
+
+Sample per chunk for mic-command (default: 1024)
+```sh
   --mic-command-samples-per-chunk MIC_COMMAND_SAMPLES_PER_CHUNK
-                        Sample per chunk for mic-command (default: 1024)
-  --mic-volume-multiplier MIC_VOLUME_MULTIPLIER
-  --mic-noise-suppression {0,1,2,3,4}
+```
+Mic volume multiplier
+```sh
+-mic-volume-multiplier MIC_VOLUME_MULTIPLIER
+```
+
+Mic noise suppression
+```sh
+--mic-noise-suppression {0,1,2,3,4}
+```
+
+Mic auto gain
+```sh
   --mic-auto-gain {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31}
-  --mic-seconds-to-mute-after-awake-wav MIC_SECONDS_TO_MUTE_AFTER_AWAKE_WAV
-                        Seconds to mute microphone after awake wav is finished playing (default: 0.5)
-  --mic-no-mute-during-awake-wav
-                        Don't mute the microphone while awake wav is being played
-  --mic-channel-index MIC_CHANNEL_INDEX
-                        Take microphone input from a specific channel (first channel is 0)
-  --snd-uri SND_URI     URI of Wyoming sound service
-  --snd-command SND_COMMAND
-                        Program to run for sound output
-  --snd-command-rate SND_COMMAND_RATE
-                        Sample rate of snd-command (hertz, default: 22050)
-  --snd-command-width SND_COMMAND_WIDTH
-                        Sample width of snd-command (bytes, default: 2)
-  --snd-command-channels SND_COMMAND_CHANNELS
-                        Sample channels of snd-command (default: 1)
-  --snd-volume-multiplier SND_VOLUME_MULTIPLIER
-  --wake-uri WAKE_URI   URI of Wyoming wake word detection service
-  --wake-word-name name [pipeline ...]
-                        Name of wake word to listen for and optional pipeline name to run (requires --wake-uri)
-  --wake-command WAKE_COMMAND
-                        Program to run for wake word detection
-  --wake-command-rate WAKE_COMMAND_RATE
-                        Sample rate of wake-command (hertz, default: 16000)
-  --wake-command-width WAKE_COMMAND_WIDTH
-                        Sample width of wake-command (bytes, default: 2)
-  --wake-command-channels WAKE_COMMAND_CHANNELS
-                        Sample channels of wake-command (default: 1)
-  --wake-refractory-seconds WAKE_REFRACTORY_SECONDS
-                        Seconds after a wake word detection before another detection is handled (default: 5)
-  --vad                 Wait for speech before streaming audio
-  --vad-threshold VAD_THRESHOLD
-  --vad-trigger-level VAD_TRIGGER_LEVEL
-  --vad-buffer-seconds VAD_BUFFER_SECONDS
-  --vad-wake-word-timeout VAD_WAKE_WORD_TIMEOUT
-                        Seconds before going back to waiting for speech when wake word isn't detected
-  --event-uri EVENT_URI
-                        URI of Wyoming service to forward events to
-  --startup-command STARTUP_COMMAND
-                        Command run when the satellite starts
-  --detect-command DETECT_COMMAND
-                        Command to run when wake word detection starts
-  --detection-command DETECTION_COMMAND
-                        Command to run when wake word is detected
-  --transcript-command TRANSCRIPT_COMMAND
-                        Command to run when speech to text transcript is returned
-  --stt-start-command STT_START_COMMAND
-                        Command to run when the user starts speaking
-  --stt-stop-command STT_STOP_COMMAND
-                        Command to run when the user stops speaking
-  --synthesize-command SYNTHESIZE_COMMAND
-                        Command to run when text to speech text is returned
-  --tts-start-command TTS_START_COMMAND
-                        Command to run when text to speech response starts
-  --tts-stop-command TTS_STOP_COMMAND
-                        Command to run when text to speech response stops
-  --tts-played-command TTS_PLAYED_COMMAND
-                        Command to run when text-to-speech audio stopped playing
-  --streaming-start-command STREAMING_START_COMMAND
-                        Command to run when audio streaming starts
-  --streaming-stop-command STREAMING_STOP_COMMAND
-                        Command to run when audio streaming stops
-  --error-command ERROR_COMMAND
-                        Command to run when an error occurs
-  --connected-command CONNECTED_COMMAND
-                        Command to run when connected to the server
-  --disconnected-command DISCONNECTED_COMMAND
-                        Command to run when disconnected from the server
-  --timer-started-command TIMER_STARTED_COMMAND
-                        Command to run when a timer starts
-  --timer-updated-command TIMER_UPDATED_COMMAND
-                        Command to run when a timer is paused, resumed, or has time added or removed
-  --timer-cancelled-command TIMER_CANCELLED_COMMAND, --timer-canceled-command TIMER_CANCELLED_COMMAND
-                        Command to run when a timer is cancelled
-  --timer-finished-command TIMER_FINISHED_COMMAND
-                        Command to run when a timer finishes
-  --awake-wav AWAKE_WAV
-                        WAV file to play when wake word is detected
-  --done-wav DONE_WAV   WAV file to play when voice command is done
-  --timer-finished-wav TIMER_FINISHED_WAV
-                        WAV file to play when a timer finishes
-  --timer-finished-wav-repeat repeat delay
-                        Number of times to play timer finished WAV and delay between repeats in seconds
-  --uri URI             unix:// or tcp://
-  --name NAME           Name of the satellite
-  --area AREA           Area name of the satellite
-  --no-zeroconf         Disable discovery over zeroconf
-  --zeroconf-name ZEROCONF_NAME
-                        Name used for zeroconf discovery (default: MAC from uuid.getnode)
-  --zeroconf-host ZEROCONF_HOST
-                        Host address for zeroconf discovery (default: detect)
-  --debug-recording-dir DEBUG_RECORDING_DIR
-                        Directory to store audio for debugging
-  --debug               Log DEBUG messages
-  --log-format LOG_FORMAT
-                        Format for log messages
-  --version             Print version and exit
+```
+
+Seconds to mute microphone after awake wav is finished playing (default: 0.5)
+```sh
+--mic-seconds-to-mute-after-awake-wav MIC_SECONDS_TO_MUTE_AFTER_AWAKE_WAV
+```
+
+Don't mute the microphone while awake wav is being played
+```sh
+--mic-no-mute-during-awake-wav
+```
+
+Take microphone input from a specific channel (first channel is 0)
+```sh
+--mic-channel-index MIC_CHANNEL_INDEX
+```
+
+URI of Wyoming sound service
+```sh
+--snd-uri SND_URI
+```
+
+Program to run for sound output
+```sh
+--snd-command SND_COMMAND
+```
+
+Sample rate of snd-command (hertz, default: 22050)
+```sh
+--snd-command-rate SND_COMMAND_RATE
+```
+
+Sample width of snd-command (bytes, default: 2)
+```sh
+--snd-command-width SND_COMMAND_WIDTH
+```
+
+Sample channels of snd-command (default: 1)
+```sh
+--snd-command-channels SND_COMMAND_CHANNELS
+```
+
+Sound volume multiplier
+```sh
+--snd-volume-multiplier SND_VOLUME_MULTIPLIER
+```  
+
+URI of Wyoming wake word detection service
+```sh
+--wake-uri WAKE_URI
+```  
+
+Name of wake word to listen for and optional pipeline name to run (requires --wake-uri)
+```sh
+--wake-word-name name [pipeline ...]
+```  
+
+Program to run for wake word detection
+```sh
+--wake-command WAKE_COMMAND
+```  
+
+Sample rate of wake-command (hertz, default: 16000)
+```sh
+--wake-command-rate WAKE_COMMAND_RATE
+```  
+
+Sample width of wake-command (bytes, default: 2)
+```sh
+--wake-command-width WAKE_COMMAND_WIDTH
+```  
+
+Sample channels of wake-command (default: 1)
+```sh
+--wake-command-channels WAKE_COMMAND_CHANNELS
+```  
+
+Seconds after a wake word detection before another detection is handled (default: 5)
+```sh
+--wake-refractory-seconds WAKE_REFRACTORY_SECONDS
+```  
+
+Wait for speech before streaming audio
+```sh
+--vad
+```  
+
+Set the sensitivity level for Voice Activity Detection (VAD)
+```sh
+--vad-threshold VAD_THRESHOLD
+```  
+
+The number of consecutive frames of detected speech required to trigger the Voice Activity Detection (VAD)
+```sh
+--vad-trigger-level VAD_TRIGGER_LEVEL
+```  
+
+The length of audio (in seconds) stored in the buffer for Voice Activity Detection (VAD)
+```sh
+--vad-buffer-seconds VAD_BUFFER_SECONDS
+```  
+
+Seconds before going back to waiting for speech when wake word isn't detected
+```sh
+--vad-wake-word-timeout VAD_WAKE_WORD_TIMEOUT
+```  
+
+URI of Wyoming service to forward events to
+```sh
+--event-uri EVENT_URI
+```  
+
+Command run when the satellite starts
+```sh
+--startup-command STARTUP_COMMAND
+```  
+
+Command to run when wake word detection starts
+```sh
+--detect-command DETECT_COMMAND
+```  
+
+Command to run when wake word is detected
+```sh
+--detection-command DETECTION_COMMAND
+```  
+
+Command to run when speech to text transcript is returned
+```sh
+--transcript-command TRANSCRIPT_COMMAND
+```  
+
+Command to run when the user starts speaking
+```sh
+--stt-start-command STT_START_COMMAND
+```  
+
+Command to run when the user stops speaking
+```sh
+--stt-stop-command STT_STOP_COMMAND
+```  
+
+Command to run when text to speech text is returned
+```sh
+--synthesize-command SYNTHESIZE_COMMAND
+```  
+
+Command to run when text to speech response starts
+```sh
+--tts-start-command TTS_START_COMMAND
+```  
+
+Command to run when text to speech response stops
+```sh
+--tts-stop-command TTS_STOP_COMMAND
+```  
+
+Command to run when text-to-speech audio stopped playing
+```sh
+--tts-played-command TTS_PLAYED_COMMAND
+```  
+
+Command to run when audio streaming starts
+```sh
+--streaming-start-command STREAMING_START_COMMAND
+```
+
+Command to run when audio streaming stops
+```sh
+--streaming-stop-command STREAMING_STOP_COMMAND
+```
+
+Command to run when an error occurs
+```sh
+--error-command ERROR_COMMAND
+```
+
+Command to run when connected to the server
+```sh
+--connected-command CONNECTED_COMMAND
+```
+
+Command to run when disconnected from the server
+```sh
+--disconnected-command DISCONNECTED_COMMAND
+```
+
+Command to run when a timer starts
+```sh
+--timer-started-command TIMER_STARTED_COMMAND
+```
+
+Command to run when a timer is paused, resumed, or has time added or removed
+```sh
+--timer-updated-command TIMER_UPDATED_COMMAND
+```
+
+Command to run when a timer is cancelled
+```sh
+--timer-cancelled-command TIMER_CANCELLED_COMMAND, --timer-canceled-command TIMER_CANCELLED_COMMAND
+```
+
+Command to run when a timer finishes
+```sh
+--timer-finished-command TIMER_FINISHED_COMMAND
+```
+
+WAV file to play when wake word is detected
+```sh
+--awake-wav AWAKE_WAV
+```
+
+WAV file to play when voice command is done
+```sh
+-done-wav DONE_WAV
+```
+
+WAV file to play when a timer finishes
+```sh
+--timer-finished-wav TIMER_FINISHED_WAV
+```
+
+Number of times to play timer finished WAV and delay between repeats in seconds
+```sh
+--timer-finished-wav-repeat repeat delay
+```
+
+Specifies the Uniform Resource Identifier (URI) of a service that the system needs to communicate with (unix:// or tcp://)
+```sh
+--uri URI
+```
+
+Name of the satellite
+```sh
+-name NAME
+```
+
+Area name of the satellite
+```sh
+--area AREA
+```
+
+Disable discovery over zeroconf
+```sh
+--no-zeroconf
+```
+
+Name used for zeroconf discovery (default: MAC from uuid.getnode)
+```sh
+--zeroconf-name ZEROCONF_NAME
+```
+
+Host address for zeroconf discovery (default: detect)
+```sh
+--zeroconf-host ZEROCONF_HOST
+```
+
+Directory to store audio for debugging
+```sh
+--debug-recording-dir DEBUG_RECORDING_DIR
+```
+
+Log DEBUG messages
+```sh
+--debug
+```
+
+Format for log messages
+```sh
+--log-format LOG_FORMAT
+```
+
+Print version and exit
+```sh
+--version
+```
