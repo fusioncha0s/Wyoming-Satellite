@@ -224,6 +224,11 @@ RestartSec=1
 WantedBy=default.target
 ```
 
+Reopen the wyoming sattelite confiruation file to make updates
+```sh
+sudo systemctl edit --force --full wyoming-satellite.service
+```
+
 Update the wyoming satellite configuration file to to require the wyoming-openwakeword.serivce and also adding the wake word that will be used to activate the device when you want to say something.  Add the openwake word configuration within the "Unit" section. Add the wake-word-name configuration witin the "Service" section.  You can use "ok_nabu" or "hey_jarvis".
 ```sh
 [Unit]
