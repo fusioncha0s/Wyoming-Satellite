@@ -13,7 +13,6 @@ This guide was created and verified on 03/26/2025 using a rasberry pi zero 2W, r
 - [Install local wake word and its dependencies](#Install-local-wake-word-and-its-dependencies)
 - [Create the wyoming local wake word service](#Create-the-wyoming-local-wake-word-service)
 - [Enable the LED lights when you want to say something](#Enable-the-LED-lights-when-you-want-to-say-something)
-- [Done](#Done)
 - [Commands to reference](#Commands-to-reference)
 
 ## Update the rasberry pi
