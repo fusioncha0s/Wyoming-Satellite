@@ -260,7 +260,10 @@ sudo systemctl restart wyoming-satellite.service
 
 Verify the wyoming satellite and openwake word services are running within the "Active" line for each services.
 ```sh
-sudo systemctl restart wyoming-satellite.service
+journalctl -u wyoming-openwakeword.service -f
+```
+```sh
+journalctl -u wyoming-satellite.service -f
 ```
 
 ## Enable the LED lights when you want to say something
