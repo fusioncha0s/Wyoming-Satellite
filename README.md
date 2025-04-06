@@ -153,6 +153,7 @@ ExecStart=/home/pi/wyoming-satellite/script/run \
         -c 1 \
         -f S16_LE \
         -t raw' \
+        --snd-volume-multiplier .2 \
     --mic-auto-gain 5 \
     --mic-noise-suppression 2
 WorkingDirectory=/home/pi/wyoming-satellite
@@ -271,6 +272,7 @@ ExecStart=/home/pi/wyoming-satellite/script/run \
         -c 1 \
         -f S16_LE \
         -t raw' \
+        --snd-volume-multiplier .2 \
     --mic-auto-gain 5 \
     --mic-noise-suppression 2 \
     --wake-uri 'tcp://127.0.0.1:10400' \
@@ -385,6 +387,7 @@ ExecStart=/home/pi/wyoming-satellite/script/run \
         -c 1 \
         -f S16_LE \
         -t raw' \
+        --snd-volume-multiplier .2 \
     --mic-auto-gain 5 \
     --mic-noise-suppression 2 \
     --wake-uri 'tcp://127.0.0.1:10400' \
