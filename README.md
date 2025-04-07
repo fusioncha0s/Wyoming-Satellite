@@ -401,6 +401,31 @@ RestartSec=1
 WantedBy=default.target
 ```
 
+Turn off the static green light when wakeword is not detected.  Make sure to change "pi" to your username.
+```sh
+nano /home/pi/wyoming-satellite/examples/2mic_service.py
+```
+
+Find the lines that say
+
+ if StreamingStarted.is_type(event.type):
+            self.color(YELLOW)
+        elif Detection.is_type(event.type):
+            self.color(_BLUE)
+            await asyncio.sleep(1.0)  # show for 1 sec
+        elif VoiceStarted.is_type(event.type):
+            self.color(_YELLOW)
+        elif Transcript.is_type(event.type):
+            self.color(GREEN)
+            await asyncio.sleep(1.0)  # show for 1 sec
+        elif StreamingStopped.is_type(event.type):
+            self.color(_BLACK)
+        elif RunSatellite.is_type(event.type):
+            self.color(_BLACK)
+        elif SatelliteConnected.is_type(event.type):
+
+You can change these colors to BLACK, WHITE, RED, YELLOW, BLUE, or GREEN.  I set "streamingStarted" and "Transcript" to BLACK.  I kept everything else as default.
+
 Reload the services
 ```sh
 sudo systemctl daemon-reload
