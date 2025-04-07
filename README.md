@@ -408,6 +408,7 @@ nano /home/pi/wyoming-satellite/examples/2mic_service.py
 
 Find the lines that say
 
+```sh
  if StreamingStarted.is_type(event.type):
             self.color(YELLOW)
         elif Detection.is_type(event.type):
@@ -423,6 +424,7 @@ Find the lines that say
         elif RunSatellite.is_type(event.type):
             self.color(_BLACK)
         elif SatelliteConnected.is_type(event.type):
+```
 
 You can change these colors to BLACK, WHITE, RED, YELLOW, BLUE, or GREEN.  I set "streamingStarted" and "Transcript" to BLACK.  I kept everything else as default.
 
