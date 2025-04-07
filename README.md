@@ -426,7 +426,9 @@ Find the lines that say
         elif SatelliteConnected.is_type(event.type):
 ```
 
-You can change these colors to BLACK, WHITE, RED, YELLOW, BLUE, or GREEN.  I set "streamingStarted" and "Transcript" to BLACK.  I kept everything else as default.
+You can change these colors to BLACK, WHITE, RED, YELLOW, BLUE, or GREEN.  Setting to streamingstarted to black keeps the lights off when no voice is detected, and changing the voicestarted to Blue will stay on while you speak so you know when you are done speaking, otherwise kept everything default expect the following changes... 
+- I set "streamingStarted" to _BLACK
+- I set "VoiceStarted" to _BLUE
 
 Reload the services
 ```sh
