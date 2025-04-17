@@ -393,7 +393,7 @@ Reopen the wyoming sattelite confiruation file to make updates
 sudo systemctl edit --force --full wyoming-satellite.service
 ```
 
-Update the wyoming satellite configuration file to to require the 2mic_LEDs.serivce and also adding the port to ensure the LEDs function.  Add the 2mic_LEDs configuration within the "Unit" section. Add the wake-word-name configuration witin the "Service" section.  You can use "ok_nabu" or "hey_jarvis".
+Update the wyoming satellite configuration file to to require the 2mic_LEDs.serivce and also adding the port to ensure the LEDs function.  Add the 2mic_LEDs configuration within the "Unit" section. Add the wake-word-name configuration witin the "Service" section.  You can use "ok_nabu" or "hey_jarvis".  Note, if you are not using the open wake word service on the wyoming satellite, omit the openwake word line under "Unit" and also the 2 lines "wake-uri" and "wake-word-name".
 ```sh
 [Unit]
 Description=Wyoming Satellite
