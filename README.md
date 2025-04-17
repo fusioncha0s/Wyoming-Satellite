@@ -435,7 +435,7 @@ RestartSec=1
 WantedBy=default.target
 ```
 
-Turn off the static green light when wakeword is not detected.  Make sure to change "pi" to your username.
+Turn off the static green light when wakeword is not detected.  Make sure to change "pi" to your username. Note, the 1 line command used to work but for some reason mentions it cannot find it.  Ensure the 2mic_service.py file is available within the examples folder by simply browsing to the examples folder and just running nano 2mic_service.py
 ```sh
 nano /home/pi/wyoming-satellite/examples/2mic_service.py
 ```
