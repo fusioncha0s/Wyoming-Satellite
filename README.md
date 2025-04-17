@@ -168,8 +168,8 @@ WantedBy=default.target
 Ensure you also have the detection-script.sh file create, if not you can use the following steps to create it.
 
 ```sh
-mkdir -p /home/fusioncha0s/wyoming-satellite/scripts
-nano /home/fusioncha0s/wyoming-satellite/scripts/detection-script.sh
+mkdir -p /home/pi/wyoming-satellite/scripts
+nano /home/pi/wyoming-satellite/scripts/detection-script.sh
 ```
 
 add 2 lines
@@ -180,7 +180,7 @@ echo "Wake word detected. Interrupting current command."
 
 Make the script executable
 ```sh
-chmod +x /home/fusioncha0s/wyoming-satellite/scripts/detection-script.sh
+chmod +x /home/pi/wyoming-satellite/scripts/detection-script.sh
 ```
 
 restart the wyoming satellite to apply changes
