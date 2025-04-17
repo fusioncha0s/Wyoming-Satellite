@@ -210,7 +210,7 @@ If there were errors and you fixed them, restart the wyoming satellite service
 sudo systemctl restart wyoming-satellite.service
 ```
 
-## Install local wake word and its dependencies
+## Install local wake word and its dependencies. if you are going to use the wakeword service on the Rasberry pi.  Else, you can skip this step,
 
 Change the directory to the wyoming satellite directory
 ```sh
@@ -248,7 +248,7 @@ Install the open wake word using the script file.  It does take a few seconds be
 script/setup
 ```
 
-## Create the wyoming local wake word service if you are going to use the wakeword service on the Rasberry pi.  Else, you can skip this step,
+## Create the wyoming local wake word service. If you are going to use the wakeword service on the Rasberry pi.  Else, you can skip this step,
 
 Create a new file for the service
 ```sh
