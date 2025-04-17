@@ -157,7 +157,7 @@ ExecStart=/home/pi/wyoming-satellite/script/run \
     --mic-auto-gain 5 \
     --mic-noise-suppression 2 \
     --wake-refractory-seconds 0 \
-    --detection-command '/home/fusioncha0s/wyoming-satellite/scripts/detection-script.sh'
+    --detection-command '/home/pi/wyoming-satellite/scripts/detection-script.sh'
 WorkingDirectory=/home/pi/wyoming-satellite
 Restart=always
 RestartSec=1
@@ -306,7 +306,9 @@ ExecStart=/home/pi/wyoming-satellite/script/run \
     --mic-auto-gain 5 \
     --mic-noise-suppression 2 \
     --wake-uri 'tcp://127.0.0.1:10400' \
-    --wake-word-name 'ok_nabu'
+    --wake-word-name 'ok_nabu' \
+    --wake-refractory-seconds 0 \
+    --detection-command '/home/pi/wyoming-satellite/scripts/detection-script.sh'
 WorkingDirectory=/home/pi/wyoming-satellite
 Restart=always
 RestartSec=1
@@ -422,7 +424,9 @@ ExecStart=/home/pi/wyoming-satellite/script/run \
     --mic-noise-suppression 2 \
     --wake-uri 'tcp://127.0.0.1:10400' \
     --wake-word-name 'ok_nabu' \
-    --event-uri 'tcp://127.0.0.1:10500'
+    --event-uri 'tcp://127.0.0.1:10500' \
+    --wake-refractory-seconds 0 \
+    --detection-command '/home/pi/wyoming-satellite/scripts/detection-script.sh'
 WorkingDirectory=/home/pi/wyoming-satellite
 Restart=always
 RestartSec=1
