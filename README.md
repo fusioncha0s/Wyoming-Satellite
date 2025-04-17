@@ -129,7 +129,7 @@ Create a new file for the service
 sudo systemctl edit --force --full wyoming-satellite.service
 ```
 
-Add the configuration and change "Pi" in the ExecStart line and the WorkingDirectory line to your rasberry pi username.
+Add the configuration and change "Pi" in the ExecStart line and the WorkingDirectory line to your rasberry pi username.  This does add a sound everytime the wakeword is detected, it will also allow you to cancel the current comand and say a new command ASAP.
 ```sh
 [Unit]
 Description=Wyoming Satellite
@@ -155,7 +155,9 @@ ExecStart=/home/pi/wyoming-satellite/script/run \
         -t raw' \
         --snd-volume-multiplier .2 \
     --mic-auto-gain 5 \
-    --mic-noise-suppression 2
+    --mic-noise-suppression 2 \
+    --wake-refractory-seconds 0 \
+    --detection-command '/home/fusioncha0s/wyoming-satellite/scripts/detection-script.sh'
 WorkingDirectory=/home/pi/wyoming-satellite
 Restart=always
 RestartSec=1
@@ -163,6 +165,34 @@ RestartSec=1
 [Install]
 WantedBy=default.target
 ```
+Ensure you also have the detection-script.sh file create, if not you can use the following steps to create it.
+
+```sh
+mkdir -p /home/fusioncha0s/wyoming-satellite/scripts
+nano /home/fusioncha0s/wyoming-satellite/scripts/detection-script.sh
+```
+
+add 2 lines
+```sh
+#!/bin/bash
+echo "Wake word detected. Interrupting current command."
+```
+
+Make the script executable
+```sh
+chmod +x /home/fusioncha0s/wyoming-satellite/scripts/detection-script.sh
+```
+
+restart the wyoming satellite to apply changes
+```sh
+sudo systemctl restart wyoming-satellite.service
+```
+
+double check nothing is broken
+```sh
+journalctl -u wyoming-satellite.service --no-pager | tail -50
+```
+
 Save the file to memory
 
 Enable the wyoming satellite service
@@ -218,7 +248,7 @@ Install the open wake word using the script file.  It does take a few seconds be
 script/setup
 ```
 
-## Create the wyoming local wake word service
+## Create the wyoming local wake word service if you are going to use the wakeword service on the Rasberry pi.  Else, you can skip this step,
 
 Create a new file for the service
 ```sh
